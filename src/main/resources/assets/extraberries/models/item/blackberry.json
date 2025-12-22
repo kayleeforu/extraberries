@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "extraberries:item/blackberry"
+  },
+  "display": {
+    "firstperson_righthand": {
+      "rotation": [15, 75, 75],
+      "translation": [1.5, 4, 0],
+      "scale": [0.7, 0.7, 0.7]
+    }
+  }
+}

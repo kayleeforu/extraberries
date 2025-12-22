@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "extra-berries",
+	"id": "extraberries",
 	"version": "${version}",
 	"name": "Extra berries",
 	"description": "The mod that adds new berries, grapes and more things to Minecraft. ",
@@ -8,7 +8,7 @@
 		"kayleeforu"
 	],
 	"license": "MIT",
-	"icon": "assets/extra-berries/icon.png",
+	"icon": "assets/extraberries/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
@@ -22,7 +22,7 @@
 		]
 	},
 	"mixins": [
-		"extra-berries.mixins.json"
+		"extraberries.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.18.3",
