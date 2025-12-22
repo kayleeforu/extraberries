@@ -7,7 +7,7 @@
 	"authors": [
 		"kayleeforu"
 	],
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/extra-berries/icon.png",
 	"environment": "*",
 	"entrypoints": {
