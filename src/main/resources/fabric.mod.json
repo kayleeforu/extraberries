@@ -1,0 +1,33 @@
+{
+	"schemaVersion": 1,
+	"id": "extra-berries",
+	"version": "${version}",
+	"name": "Extra berries",
+	"description": "The mod that adds new berries, grapes and more things to Minecraft. ",
+	"authors": [
+		"kayleeforu"
+	],
+	"license": "CC0-1.0",
+	"icon": "assets/extra-berries/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.akkay.extraberries.ExtraBerries"
+		],
+		"fabric-datagen": [
+			"com.akkay.extraberries.ExtraBerriesDataGenerator"
+		],
+		"client": [
+			"com.akkay.extraberries.ExtraBerriesClient"
+		]
+	},
+	"mixins": [
+		"extra-berries.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.3",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
