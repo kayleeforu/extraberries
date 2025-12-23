@@ -16,23 +16,34 @@ import net.minecraft.world.item.ItemStack;
 
 public class ModItems {
     // Blackberry item
-    private static final Item BLACKBERRY = registerItem("blackberry", new Item(new Item
+    public static final Item BLACKBERRY = registerItem("blackberry", new Item(new Item
             .Properties()
             .setId(itemKey("blackberry"))
             .food(addFoodProperties(2, 0.5f))));
 
     // White grapes item
-    private static final Item WHITE_GRAPES = registerItem("white_grapes", new Item(new Item
+    public static final Item WHITE_GRAPES = registerItem("white_grapes", new Item(new Item
             .Properties()
             .setId(itemKey("white_grapes"))
             .food(addFoodProperties(3, 0.5f))));
 
     // A pie? TODO
-    private static final Item BLACKBERYY_PIE = registerItem("blackberry_pie", new Item(new Item
+    public static final Item BLACKBERYY_PIE = registerItem("blackberry_pie", new Item(new Item
             .Properties()
             .setId(itemKey("blackberry_pie"))
             .food(addFoodProperties(5, 0.8f))));
 
+    // Creative Tab Key
+    private static final ResourceKey<CreativeModeTab> extraBerriesCreativeTabKey = ResourceKey.create(
+            BuiltInRegistries.CREATIVE_MODE_TAB.key(),
+            Identifier.fromNamespaceAndPath("extraberries", "extraberries")
+    );
+
+    // Creative Tab
+    private static final CreativeModeTab extraBerriesCreativeTab = FabricItemGroup.builder()
+            .title(Component.literal("Extra Berries").withColor(0x160909))
+            .icon(() -> new ItemStack(ModItems.BLACKBERRY))
+            .build();
 
     // Helper methods
     // FoodProperties method
@@ -56,14 +67,7 @@ public class ModItems {
         return Registry.register(BuiltInRegistries.ITEM, Identifier.fromNamespaceAndPath(ExtraBerries.MOD_ID, name), item);
     }
 
-    public static final ResourceKey<CreativeModeTab> extraBerriesCreativeTabKey = ResourceKey.create(
-            BuiltInRegistries.CREATIVE_MODE_TAB.key(),
-            Identifier.fromNamespaceAndPath("extraberries", "extraberries")
-    );
-    public static final CreativeModeTab extraBerriesCreativeTab = FabricItemGroup.builder()
-            .title(Component.literal("Extra Berries").withColor(0x160909))
-            .icon(() -> new ItemStack(ModItems.BLACKBERRY))
-            .build();
+    // Public
     public static void registerModItems() {
         ExtraBerries.LOGGER.info("Registering Mod Items for " + ExtraBerries.MOD_ID);
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, extraBerriesCreativeTabKey, extraBerriesCreativeTab);
