@@ -1,0 +1,30 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "extraberries:item/white_grapes"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "scale": [0.6, 0.6, 0.6],
+      "translation": [1.1, 2, 0]
+    },
+    "thirdperson_lefthand": {
+      "scale": [0.6, 0.6, 0.6],
+      "translation": [-1.1, 2, 0]
+    },
+    "firstperson_righthand": {
+      "rotation": [0, -90, 15],
+      "scale": [0.6, 0.6, 0.6],
+      "translation": [1.13, 4, 1.25]
+    },
+    "firstperson_lefthand": {
+      "rotation": [0, 90, -15],
+      "scale": [0.6, 0.6, 0.6],
+      "translation": [1.13, 4, 1.25]
+    },
+    "gui": {
+      "scale": [1.1, 1.1, 1.1],
+      "translation": [0, 1.1, 0]
+    }
+  }
+}

@@ -1,34 +1,77 @@
 package com.akkay.extraberries.item;
 
 import com.akkay.extraberries.ExtraBerries;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.ItemStack;
 
 public class ModItems {
-    private static final Item BLACKBERRY = registerItem("blackberry", new Item(new Item.Settings().registryKey(itemKey("blackberry"))));
+    // Blackberry item
+    private static final Item BLACKBERRY = registerItem("blackberry", new Item(new Item
+            .Properties()
+            .setId(itemKey("blackberry"))
+            .food(addFoodProperties(2, 0.5f))));
 
-    private static RegistryKey<Item> itemKey(String name) {
-        return RegistryKey.of(
-                RegistryKeys.ITEM,
-                Identifier.of(ExtraBerries.MOD_ID, name)
+    // White grapes item
+    private static final Item WHITE_GRAPES = registerItem("white_grapes", new Item(new Item
+            .Properties()
+            .setId(itemKey("white_grapes"))
+            .food(addFoodProperties(3, 0.5f))));
+
+    // A pie? TODO
+    private static final Item BLACKBERYY_PIE = registerItem("blackberry_pie", new Item(new Item
+            .Properties()
+            .setId(itemKey("blackberry_pie"))
+            .food(addFoodProperties(5, 0.8f))));
+
+
+    // Helper methods
+    // FoodProperties method
+    private static FoodProperties addFoodProperties(int nutrition, float saturationModifier) {
+        return new FoodProperties.Builder()
+                .nutrition(nutrition)
+                .saturationModifier(saturationModifier)
+                .build();
+    }
+
+    // Set ID method
+    private static ResourceKey<Item> itemKey(String name) {
+        return ResourceKey.create(
+                Registries.ITEM,
+                Identifier.fromNamespaceAndPath(ExtraBerries.MOD_ID, name)
         );
     }
 
+    // Item register method
     private static Item registerItem(String name, Item item) {
-        return Registry.register(Registries.ITEM, Identifier.of(ExtraBerries.MOD_ID, name), item);
+        return Registry.register(BuiltInRegistries.ITEM, Identifier.fromNamespaceAndPath(ExtraBerries.MOD_ID, name), item);
     }
 
+    public static final ResourceKey<CreativeModeTab> extraBerriesCreativeTabKey = ResourceKey.create(
+            BuiltInRegistries.CREATIVE_MODE_TAB.key(),
+            Identifier.fromNamespaceAndPath("extraberries", "extraberries")
+    );
+    public static final CreativeModeTab extraBerriesCreativeTab = FabricItemGroup.builder()
+            .title(Component.literal("Extra Berries").withColor(0x160909))
+            .icon(() -> new ItemStack(ModItems.BLACKBERRY))
+            .build();
     public static void registerModItems() {
         ExtraBerries.LOGGER.info("Registering Mod Items for " + ExtraBerries.MOD_ID);
+        Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, extraBerriesCreativeTabKey, extraBerriesCreativeTab);
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> {
-            entries.add(BLACKBERRY);
+        ItemGroupEvents.modifyEntriesEvent(extraBerriesCreativeTabKey).register(item -> {
+            item.accept(BLACKBERRY);
+            item.accept(WHITE_GRAPES);
+            item.accept(BLACKBERYY_PIE);
         });
     }
 }
